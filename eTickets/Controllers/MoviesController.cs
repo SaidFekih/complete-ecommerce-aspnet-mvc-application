@@ -17,7 +17,7 @@ namespace eTickets.Controllers
 		//Get the data directly from the database
 		public async Task<IActionResult> Index()
 		{
-			var AllMovies = await _context.Movies.ToListAsync();
+			var AllMovies = await _context.Movies.Include(n => n.Cinema).OrderBy(n => n.Name).ToListAsync();
 			return View(AllMovies);
 		}
 	}
